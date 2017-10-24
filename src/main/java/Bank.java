@@ -9,11 +9,18 @@
  */
 public class Bank {
 
-    public String bankName;
+    /**
+     * String bankName hello.
+     */
+    private String bankName;
 
+    /**
+     * Bank constructor.
+     */
     public Bank() {
         bankName = "Illini Bank";
     }
+
 
     /**
      * Withdraw money from an account.
@@ -26,9 +33,7 @@ public class Bank {
      * @return boolean
      */
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        return bankAccount.withdraw(amount);
     }
 
     /**
@@ -42,9 +47,7 @@ public class Bank {
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
-        /*
-         * Implement this function
-         */
+        return bankAccount.withdraw(-1 * amount);
     }
 
     /**
@@ -61,9 +64,10 @@ public class Bank {
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
             final double amount) {
-        /*
-         * Implement this function
-         */
+        if (source.withdraw(amount)) {
+            return destination.withdraw(-1 * amount);
+        }
+        return false;
     }
 
     /**
@@ -74,21 +78,20 @@ public class Bank {
      */
 
     public void changeOwnerName(final BankAccount bankAccount, final String name) {
-        /*
-         * Implement this function
-         */
+        bankAccount.changeName(name);
     }
 
-    public static int totalAccounts = 0;
+    /**
+     * total # of accounts.
+     */
+    private static int totalAccounts = 0;
     /**
      * Uses static variable to get number of bank accounts opened.
      *
      * @return the total number of accounts
      */
     public static int getNumberOfAccount() {
-        /*
-         * Implement this function
-         */
+        return totalAccounts;
     }
 
     /**
